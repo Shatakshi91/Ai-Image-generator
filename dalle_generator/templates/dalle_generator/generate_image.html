@@ -50,7 +50,7 @@
 
         .form-grid {
             display: grid;
-            grid-template-columns: 1fr 180px 180px 160px;
+            grid-template-columns: 1fr 150px 160px 130px 140px;
             gap: 15px;
         }
 
@@ -189,6 +189,13 @@
                         <option value="anime" {% if style == "anime" %}selected{% endif %}>Anime</option>
                         <option value="cyberpunk" {% if style == "cyberpunk" %}selected{% endif %}>Cyberpunk</option>
                         <option value="painting" {% if style == "painting" %}selected{% endif %}>Painting</option>
+                    </select>
+
+                    <select name="num_images">
+                        <option value="1" {% if num_images == 1 %}selected{% endif %}>1 image</option>
+                        <option value="2" {% if num_images == 2 %}selected{% endif %}>2 images</option>
+                        <option value="3" {% if num_images == 3 %}selected{% endif %}>3 images</option>
+                        <option value="4" {% if num_images == 4 %}selected{% endif %}>4 images</option>
                     </select>
 
                     <button type="submit">Generate</button>

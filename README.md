@@ -1,44 +1,111 @@
-# AI Image Generator using DALL-E
-# DALL-E Image Generator
+# VisionCraft AI - Django AI Image Generator
 
-The DALL-E Image Generator is a web application that leverages the power of artificial intelligence to generate unique and creative images based on user prompts. With just a few clicks, users can generate stunning images and explore a world of artistic possibilities.
+VisionCraft AI is a Django web app that generates AI images from text prompts. Users can enter an idea, choose an image size, select a visual style, and view generated images in a clean web interface.
 
 ## Features
 
-- **Prompt-based Generation**: Users can enter their prompts or descriptions, providing high-level instructions for the image generation process.
-- **Multiple Image Sizes**: The app supports generating images in three different sizes: 256x256, 512x512, and 1024x1024 pixels.
-- **Image Preview**: Generated images are displayed in the app, allowing users to preview the results instantly.
-- **Download Images**: Users can download the generated images directly from the app for further use or sharing.
-- **Styling and Animation**: The app features an elegant and user-friendly interface with appealing styles and interactive animations.
+- Generate images from text prompts using the OpenAI API.
+- Choose image sizes: `256x256`, `512x512`, or `1024x1024`.
+- Apply prompt styles such as realistic, cinematic, anime, cyberpunk, and painting.
+- Preview generated images in a responsive grid.
+- Download generated images from the browser.
+- Show friendly validation and error messages.
 
-## Installation
+## Tech Stack
 
-1. Clone this repository to your local machine.
-2. Install the required dependencies using `pip install requirements.txt`:
-3. use your own openai Api key,at views.py
+- Python
+- Django
+- OpenAI Python SDK
+- HTML and CSS
+- SQLite for local development
 
-4. Access the app in your web browser at `http://localhost:8000/generate_image`.
+## Project Structure
 
-## Usage
+```text
+Ai-Image-generator/
+├── dalle_app/                 # Django project settings and URL config
+├── dalle_generator/           # Main image generator app
+│   ├── templates/             # Django HTML templates
+│   ├── views.py               # Prompt validation and image generation view
+│   └── tests.py               # Tests to add as the project improves
+├── manage.py
+├── requirements.txt
+├── .env.example
+└── README.md
+```
 
-1. Open the app in your web browser.
-2. Enter a prompt or description in the input field. This provides high-level instructions for the image generation.
-3. Select the desired image size from the dropdown menu.
-4. Click the "Generate" button to initiate the image generation process.
-5. The generated images will be displayed on the page, and you can hover over them to see an animated effect.
-6. To download an image, click the "Download Image" link below the image.
+## Local Setup
 
+1. Clone the repository.
 
-## Contributing
+2. Create and activate a virtual environment.
 
-Contributions are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
 
-## Acknowledgements
+3. Install dependencies.
 
-The DALL-E Image Generator app is powered by the OpenAI GPT-3 language model and the DALL-E image generation model.
+```bash
+pip install -r requirements.txt
+```
 
-## Resources
+4. Create a `.env` file using `.env.example` as a guide.
 
-- [OpenAI GPT-3](https://openai.com)
-- [DALL-E Image Generation](https://openai.com/blog/dall-e/)
+```env
+DJANGO_SECRET_KEY=replace-this-with-a-local-secret-key
+DJANGO_DEBUG=True
+DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
+OPENAI_API_KEY=your_openai_api_key_here
+```
 
+5. Run database migrations.
+
+```bash
+python manage.py migrate
+```
+
+6. Start the development server.
+
+```bash
+python manage.py runserver
+```
+
+7. Open the app in your browser.
+
+```text
+http://localhost:8000/generate-image/
+```
+
+## Environment Variables
+
+| Variable | Purpose |
+| --- | --- |
+| `DJANGO_SECRET_KEY` | Secret key used by Django |
+| `DJANGO_DEBUG` | Enables or disables debug mode |
+| `DJANGO_ALLOWED_HOSTS` | Comma-separated list of allowed hosts |
+| `OPENAI_API_KEY` | API key used for image generation |
+
+## Verification
+
+Run Django's project check:
+
+```bash
+python manage.py check
+```
+
+Run the development server and test:
+
+- Open `/generate-image/`.
+- Submit an empty prompt and confirm a validation message appears.
+- Submit a valid prompt with each size and style.
+- Temporarily remove `OPENAI_API_KEY` and confirm a friendly error appears.
+
+## Future Improvements
+
+- Add automated tests for validation and view behavior.
+- Move OpenAI image generation into a service module.
+- Move inline CSS into Django static files.
+- Add deployment notes for production hosting.
+- Remove or reorganize unrelated helper scripts from the repository root.
